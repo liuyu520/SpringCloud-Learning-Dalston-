@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 /**
  * @author 翟永超
  * @create 2017/4/15.
@@ -19,8 +23,12 @@ public class DcController {
     ConsumerService consumerService;
 
     @GetMapping("/consumer")
-    public String dc(Boolean delay) {
-        return consumerService.consumer(delay);
+    public String dc(Boolean delay,
+                     HttpServletRequest request,
+                     HttpServletResponse response) {
+        return consumerService.consumer(delay,
+                request,
+                response);
     }
 
     @Service
@@ -30,14 +38,23 @@ public class DcController {
         RestTemplate restTemplate;
 
         @HystrixCommand(fallbackMethod = "fallback")
-        public String consumer(Boolean delay) {
+        public String consumer(Boolean delay,
+                               HttpServletRequest request,
+                               HttpServletResponse response) {
             System.out.println("consumer delay :" + delay);
             return restTemplate.getForObject("http://eureka-client/dc" + (null == delay ? "" : "?delay=" + delay), String.class);
         }
 
-        public String fallback(Boolean delay) {
+        public String fallback(Boolean delay,
+                               HttpServletRequest request,
+                               HttpServletResponse response) {
             System.out.println("fallback delay :" + delay);
-            return "fallbck22";
+            try {
+                response.sendRedirect("error2.jsp");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
         }
 
     }
