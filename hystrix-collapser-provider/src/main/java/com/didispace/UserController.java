@@ -37,8 +37,8 @@ public class UserController {
     public List<String> findByIds(@RequestParam String ids) {
         log.info("findByIds : " + ids);
         List<String> result = new ArrayList<>();
-        for(String id : ids.split(",")) {
-            if(users.get(Long.valueOf(id)) != null)
+        for (String id : ids.split(",")) {
+            if (users.get(Long.valueOf(id)) != null)
                 result.add(users.get(Long.valueOf(id)));
         }
 

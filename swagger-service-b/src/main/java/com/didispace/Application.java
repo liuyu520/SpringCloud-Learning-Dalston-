@@ -14,23 +14,23 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 public class Application {
 
-	public static void main(String[] args) {
-		new SpringApplicationBuilder(Application.class).web(true).run(args);
-	}
+    public static void main(String[] args) {
+        new SpringApplicationBuilder(Application.class).web(true).run(args);
+    }
 
-	@RestController
-	class BbbController {
+    @RestController
+    class BbbController {
 
-		@Autowired
-		DiscoveryClient discoveryClient;
+        @Autowired
+        DiscoveryClient discoveryClient;
 
-		@GetMapping("/service-b")
-		public String dc() {
-			String services = "Services: " + discoveryClient.getServices();
-			System.out.println(services);
-			return services;
-		}
+        @GetMapping("/service-b")
+        public String dc() {
+            String services = "Services: " + discoveryClient.getServices();
+            System.out.println(services);
+            return services;
+        }
 
-	}
+    }
 
 }

@@ -29,7 +29,7 @@ public class UserService {
             scope = com.netflix.hystrix.HystrixCollapser.Scope.GLOBAL,
             batchMethod = "findByIds",
             collapserProperties = {
-                @HystrixProperty(name="timerDelayInMilliseconds", value = "100")
+                    @HystrixProperty(name = "timerDelayInMilliseconds", value = "100")
             }
     )
     public Future<String> findById(Long id) {

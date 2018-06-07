@@ -13,21 +13,21 @@ import org.springframework.test.context.junit4.SpringRunner;
 @EnableBinding(value = {SinkApplicationTests.SinkSender.class})
 public class SinkApplicationTests {
 
-	@Autowired
-	private SinkSender sinkSender;
+    @Autowired
+    private SinkSender sinkSender;
 
-	@Test
-	public void sinkSenderTester() {
-		sinkSender.output().send(MessageBuilder.withPayload("produce a message ：http://blog.didispace.com").build());
-	}
+    @Test
+    public void sinkSenderTester() {
+        sinkSender.output().send(MessageBuilder.withPayload("produce a message ：http://blog.didispace.com").build());
+    }
 
-	public interface SinkSender {
+    public interface SinkSender {
 
-		String OUTPUT = "input";
+        String OUTPUT = "input";
 
-		@Output(SinkSender.OUTPUT)
-		MessageChannel output();
+        @Output(SinkSender.OUTPUT)
+        MessageChannel output();
 
-	}
+    }
 
 }

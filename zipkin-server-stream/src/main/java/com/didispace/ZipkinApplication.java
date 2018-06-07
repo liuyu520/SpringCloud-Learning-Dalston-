@@ -11,8 +11,8 @@ import zipkin.storage.SpanStore;
 @SpringBootApplication
 public class ZipkinApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ZipkinApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ZipkinApplication.class, args);
+    }
 
 }
