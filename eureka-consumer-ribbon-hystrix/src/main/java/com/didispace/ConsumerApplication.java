@@ -8,6 +8,10 @@ import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
+/***
+ * @author : whuang
+ * 断路器参考:https://blog.csdn.net/hry2015/article/details/78554846
+ */
 @EnableCircuitBreaker
 @EnableDiscoveryClient
 @SpringBootApplication

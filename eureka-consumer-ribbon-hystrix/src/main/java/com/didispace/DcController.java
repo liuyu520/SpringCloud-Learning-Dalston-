@@ -14,7 +14,8 @@ import java.io.IOException;
 /**
  * @author 翟永超
  * @create 2017/4/15.
- * @blog http://blog.didispace.com
+ * @blog http://blog.didispace.com<br />
+ * 断路器参考:https://blog.csdn.net/hry2015/article/details/78554846
  */
 @RestController
 public class DcController {
