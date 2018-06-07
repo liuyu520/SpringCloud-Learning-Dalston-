@@ -1,9 +1,7 @@
 package com.didispace;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.netflix.ribbon.proxy.annotation.Hystrix;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,8 +19,8 @@ public class DcController {
     ConsumerService consumerService;
 
     @GetMapping("/consumer")
-    public String dc() {
-        return consumerService.consumer();
+    public String dc(Boolean delay) {
+        return consumerService.consumer(delay);
     }
 
     @Service
@@ -32,12 +30,14 @@ public class DcController {
         RestTemplate restTemplate;
 
         @HystrixCommand(fallbackMethod = "fallback")
-        public String consumer() {
-            return restTemplate.getForObject("http://eureka-client/dc", String.class);
+        public String consumer(Boolean delay) {
+            System.out.println("consumer delay :" + delay);
+            return restTemplate.getForObject("http://eureka-client/dc" + (null == delay ? "" : "?delay=" + delay), String.class);
         }
 
-        public String fallback() {
-            return "fallbck";
+        public String fallback(Boolean delay) {
+            System.out.println("fallback delay :" + delay);
+            return "fallbck22";
         }
 
     }

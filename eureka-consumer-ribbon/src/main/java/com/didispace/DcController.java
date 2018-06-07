@@ -17,8 +17,8 @@ public class DcController {
     RestTemplate restTemplate;
 
     @GetMapping("/consumer")
-    public String dc() {
-        return restTemplate.getForObject("http://eureka-client/dc", String.class);
+    public String dc(Boolean delay) {
+        return restTemplate.getForObject("http://eureka-client/dc" + (null == delay ? "" : "?delay=" + delay), String.class);
     }
 
 }
