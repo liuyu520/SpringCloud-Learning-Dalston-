@@ -2,11 +2,15 @@ package com.didispace;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
+import com.string.widget.util.ValueWidget;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 
+/***
+ * @author : whuang
+ */
 public class AccessFilter extends ZuulFilter {
 
     private static Logger log = LoggerFactory.getLogger(AccessFilter.class);
@@ -34,7 +38,8 @@ public class AccessFilter extends ZuulFilter {
         log.info("send {} request to {}", request.getMethod(), request.getRequestURL().toString());
 
         Object accessToken = request.getParameter("accessToken");
-        if (accessToken == null) {
+        System.out.println("accessToken :" + accessToken);
+        if (ValueWidget.isNullOrEmpty(accessToken)) {
             log.warn("access token is empty");
             ctx.setSendZuulResponse(false);
             ctx.setResponseStatusCode(401);
