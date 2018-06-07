@@ -8,7 +8,15 @@ zuul:
   routes:
     user-service:
       path: /user-service/**
-      url: http://localhost:8003
+      serviceId: user-service2
+
+ribbon:
+  eureka:
+    enabled: true
+user-service2:
+  ribbon:
+    listOfServers: http://localhost:8003/,http://localhost:8004/
+
 eureka:
   client:
       serviceUrl:
