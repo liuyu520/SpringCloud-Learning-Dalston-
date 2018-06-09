@@ -8,6 +8,13 @@
     <packaging>pom</packaging>
     <version>1.0</version>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.kunlunsoft</groupId>
+            <artifactId>io0007</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
     <modules>
 
         <module>eureka-server</module>
@@ -41,6 +48,7 @@
 
         <module>api-gateway</module>
         <module>api-gateway-with-eureka</module>
+        <module>api-gateway-deal-exception</module>
 
         <module>stream-hello</module>
 
